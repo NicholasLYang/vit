@@ -1,17 +1,10 @@
-#[macro_use]
 extern crate nom;
 
 pub mod parser;
 
 fn main() {
-    let input = "   TITLE:";
-    match parser::length_value(input.as_bytes()) {
-        Ok(res) => {
-            println!("{:?}", res);
-        },
-        Err(err) => {
-            println!("ERROR: {:?}", err);
-        }
-    }
-
+    let input = "   TITLE: ZAMA
+001 tape editchannels edittype clipstarttime clipendtime timelineposition timelinepositionend";
+    let res = parser::parse_edl_file(input.as_bytes());
+    println!("{:?}", res);
 }
